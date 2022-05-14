@@ -68,6 +68,12 @@ class UserChallengesFragment : Fragment() {
             // Update the UI
             setupChallengeList(ArrayList(challenges))
         }
+
+        /*Method to get users
+        baseViewModel.users.observe(viewLifecycleOwner) { users ->
+            print(users)
+        }
+        */
     }
 
     private fun setupChallengeList(challenges : ArrayList<Challenge>) {

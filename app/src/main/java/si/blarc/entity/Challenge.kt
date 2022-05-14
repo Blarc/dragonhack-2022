@@ -1,6 +1,7 @@
 package si.blarc.entity
 
 import java.io.Serializable
+import java.util.*
 
 data class Challenge (
     val title: String,
@@ -8,8 +9,10 @@ data class Challenge (
     val reward: Int,
     val assignedTo: String?,
     val assignedFrom: String?,
-    val color: String
+    val color: String,
+    val completed: Boolean?,
+    val dateToDo: Date?
 
     ) : Serializable {
-    constructor() : this("", "", 0, "", "", "")
+    constructor() : this("", "", 0, "", "", "", false, null)
 }
