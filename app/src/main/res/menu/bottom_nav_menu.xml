@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_nav_home"
-        android:title="Person"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/bottom_nav_add_friend"
-        android:title="Person"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="Friends"
+        android:icon="@drawable/ic_friends"/>
     <item
         android:id="@+id/bottom_nav_completed_challenges"
-        android:title="Person"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="History"
+        android:icon="@drawable/ic_history"/>
 </menu>
