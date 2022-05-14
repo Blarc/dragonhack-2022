@@ -1,15 +1,12 @@
 package si.blarc.UI
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import si.blarc.entity.Challenge
 import com.google.firebase.database.ValueEventListener
 import si.blarc.Firebase.FirebaseUtils.getChallengesRef
+import si.blarc.entity.Challenge
 
 class BaseViewModel : ViewModel() {
 
@@ -43,7 +40,6 @@ class BaseViewModel : ViewModel() {
         })
     }
 
-    /*
     private fun getChallengesFromFirebase() {
         getChallengesRef().get().addOnCompleteListener {
             val challengesList = ArrayList<Challenge>()
@@ -57,6 +53,5 @@ class BaseViewModel : ViewModel() {
             this.challenges.value = challengesList
         }
     }
-     */
 
 }

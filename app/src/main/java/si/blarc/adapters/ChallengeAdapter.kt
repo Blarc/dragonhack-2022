@@ -45,8 +45,8 @@ class ChallengeAdapter(
         fun bindChallenge(challenge: Challenge) {
             this.challenge = challenge;
 
-            val textView: TextView = view.findViewById(R.id.challenge_item_text_view)
-            textView.text = challenge.description
+            val textView: TextView = view.findViewById(R.id.challenge_item_challenge_title)
+//            textView.text = challenge.description
         }
 
     }

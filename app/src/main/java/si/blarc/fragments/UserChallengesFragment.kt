@@ -64,10 +64,10 @@ class UserChallengesFragment : Fragment() {
 
         challengesList = view.findViewById(R.id.user_challenges_challenges_list)
 
-        baseViewModel.challenges.observe(viewLifecycleOwner, Observer<MutableList<Challenge>> { challenges ->
+        baseViewModel.challenges.observe(viewLifecycleOwner) { challenges ->
             // Update the UI
             setupChallengeList(ArrayList(challenges))
-        })
+        }
     }
 
     private fun setupChallengeList(challenges : ArrayList<Challenge>) {
