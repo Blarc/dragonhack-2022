@@ -1,4 +1,4 @@
-package si.blarc.Firebase
+package si.blarc.firebase
 
 import com.google.firebase.database.*
 import si.blarc.entity.Challenge

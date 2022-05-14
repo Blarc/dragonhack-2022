@@ -1,8 +1,6 @@
 package si.blarc.entity
 
 import java.io.Serializable
-import java.time.LocalDate
-import java.util.*
 
 data class Challenge (
     val title: String,

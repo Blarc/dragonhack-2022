@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import si.blarc.R
 import si.blarc.adapters.UserAdapter
 import si.blarc.entity.User
+import si.blarc.ui.BaseViewModel
 
 
 class AssignChallengeFragment : Fragment() {
@@ -21,6 +23,8 @@ class AssignChallengeFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var adapter: UserAdapter
+
+    private val baseViewModel: BaseViewModel by activityViewModels()
 
     companion object {
         @JvmStatic
@@ -49,8 +53,9 @@ class AssignChallengeFragment : Fragment() {
 
         friendsList = view.findViewById(R.id.assign_challenge_users_list)
 
-        // TODO @Blarc: Pass an actual array
-        setupFriendsList(arrayListOf())
+        baseViewModel.friends.observe(viewLifecycleOwner) {
+            setupFriendsList(ArrayList(it))
+        }
     }
 
     private fun setupFriendsList(users: ArrayList<User>) {
@@ -63,22 +68,6 @@ class AssignChallengeFragment : Fragment() {
     }
 
     private fun setupFriendsListAdapter(users: ArrayList<User>) {
-        adapter = UserAdapter(
-            arrayListOf(
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-            )
-        )
+        adapter = UserAdapter(users)
     }
 }

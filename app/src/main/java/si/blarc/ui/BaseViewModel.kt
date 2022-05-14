@@ -1,88 +1,91 @@
-package si.blarc.UI
+package si.blarc.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import si.blarc.Firebase.FirebaseUtils
-import si.blarc.Firebase.FirebaseUtils.addChallenge
-import si.blarc.Firebase.FirebaseUtils.getChallengesRef
-import si.blarc.Firebase.FirebaseUtils.getFriendsRef
-import si.blarc.Firebase.FirebaseUtils.getUsersRef
+import si.blarc.firebase.FirebaseUtils.getChallengesRef
+import si.blarc.firebase.FirebaseUtils.getFriendsRef
+import si.blarc.firebase.FirebaseUtils.getUsersRef
 import si.blarc.entity.Challenge
 import si.blarc.entity.User
+import si.blarc.firebase.FirebaseUtils
 
 class BaseViewModel : ViewModel() {
 
     val challenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
+    val completedChallenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
+    val users = MutableLiveData<MutableList<User>>(mutableListOf())
+    val friends = MutableLiveData<MutableList<User>>(mutableListOf())
 
-    val users = MutableLiveData<ArrayList<User>>()
-
-    val friends = MutableLiveData<ArrayList<User>>()
 
     init {
-        listenForChallengesOnFirebase()
-
-        getUsers()
-
-        getFriends()
+        subscribeToChallengesOnFirebase()
+        subscribeToUsersOnFirebase()
+        subscribeToFriendsOnFirebase()
     }
 
     fun getCurrentUser() : User {
         return User(FirebaseUtils.getIdOfCurUser(), "")
     }
 
-    private fun getCompletedChallenges() : List<Challenge> {
-        return ArrayList(challenges.value).filter { challenge ->
-            challenge.completed == true
-        }
-    }
-
     fun addChallenge(challenge: Challenge) {
         FirebaseUtils.addChallenge(challenge)
     }
 
-    private fun listenForChallengesOnFirebase() {
-        val challengesIn = this.challenges
+    private fun subscribeToChallengesOnFirebase() {
         getChallengesRef().addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 //snapshot.getValue(List<Challenge::class.java>)
                 val challengesList = ArrayList<Challenge>()
+                val completedChallengesList = ArrayList<Challenge>()
 
                 for (postSnapshot in snapshot.children) {
                     //val curChallenge = Challenge("", "", 0, "", "", "");
                     val challenge = postSnapshot.getValue(Challenge::class.java)
                     challengesList.add(challenge!!)
+
+                    if (challenge.completed == true) {
+                        completedChallengesList.add(challenge)
+                    }
                 }
 
-                challengesIn.value = challengesList
+                challenges.value = challengesList
+                completedChallenges.value = completedChallengesList
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
+                // TODO @Blarc: Add proper logging.
                 print("The read of all challenges failed!")
             }
         })
     }
 
-    private fun getUsers() {
-        val usersIn = this.users
+    private fun subscribeToUsersOnFirebase() {
+        getUsersRef().addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val usersList = ArrayList<User>()
 
-        getUsersRef().get().addOnCompleteListener {
-            val usersList = ArrayList<User>()
+                for (userSnapshot in snapshot.children) {
+                    val user = userSnapshot.getValue(User::class.java)
+                    usersList.add(user!!)
+                }
 
-            for (postSnapshot in it.result.children) {
-                //val curChallenge = Challenge("", "", 0, "", "", "");
-                val userId = postSnapshot.key
-                usersList.add(User(userId!!, ""))
+                users.value = usersList
             }
 
-            usersIn.value = usersList
-        }
+            override fun onCancelled(error: DatabaseError) {
+                // TODO @Blarc: Add proper logging.
+                print("The read of all challenges failed!")
+            }
+
+        })
     }
 
-    private fun getFriends() {
+
+    private fun subscribeToFriendsOnFirebase() {
         val friendsIn = this.friends
         getFriendsRef().addValueEventListener(object : ValueEventListener {
 
@@ -99,7 +102,8 @@ class BaseViewModel : ViewModel() {
                 friendsIn.value = friendsList
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
+            override fun onCancelled(error: DatabaseError) {
+                // TODO @Blarc: Add proper logging.
                 print("The read of all challenges failed!")
             }
         })

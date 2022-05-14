@@ -2,22 +2,20 @@ package si.blarc.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import si.blarc.LoginActivity
 import si.blarc.MainActivity
 import si.blarc.R
-import si.blarc.UI.BaseViewModel
 import si.blarc.entity.Challenge
+import si.blarc.ui.BaseViewModel
 import si.blarc.utils.UIUtils.replaceFragment
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 class CreateChallengeFragment : Fragment() {
@@ -45,6 +43,7 @@ class CreateChallengeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = "Create challenge"
 
         challengeTitle = view.findViewById(R.id.challenge_title_input)
         challengeDescription = view.findViewById(R.id.challenge_title_desc)

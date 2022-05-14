@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import si.blarc.R
-import si.blarc.UI.BaseViewModel
+import si.blarc.ui.BaseViewModel
 import si.blarc.activities.CreateChallengeActivity
 import si.blarc.adapters.ChallengeAdapter
 import si.blarc.entity.Challenge
@@ -85,27 +85,5 @@ class UserChallengesFragment : Fragment() {
 
     private fun setupChallengeListAdapter(challenges : ArrayList<Challenge>) {
         adapter = ChallengeAdapter(challenges)
-
-        /*adapter = ChallengeAdapter(
-            arrayListOf(
-                Challenge("Title 1", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 2", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 3", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 4", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 5", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
-                Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color")
-            )
-        )*/
     }
 }

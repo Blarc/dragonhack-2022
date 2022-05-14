@@ -7,7 +7,7 @@
     tools:context=".activities.CreateChallengeActivity" >
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_top_toolbar"
+        android:id="@+id/create_challenge_top_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -26,6 +26,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_top_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/create_challenge_top_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

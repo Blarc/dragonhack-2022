@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import si.blarc.fragments.AddFriendFragment
+import si.blarc.fragments.HistoryChallengesFragment
 import si.blarc.fragments.UserChallengesFragment
 import si.blarc.utils.UIUtils.replaceFragment
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_nav_completed_challenges -> replaceFragment(
                     this,
                     R.id.main_fragment_container,
-                    AddFriendFragment::class.java
+                    HistoryChallengesFragment::class.java
                 )
             }
             true

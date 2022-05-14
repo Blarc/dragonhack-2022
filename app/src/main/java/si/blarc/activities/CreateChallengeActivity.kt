@@ -2,10 +2,13 @@ package si.blarc.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import si.blarc.R
 import si.blarc.fragments.CreateChallengeFragment
 
 class CreateChallengeActivity : AppCompatActivity() {
+
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,5 +19,9 @@ class CreateChallengeActivity : AppCompatActivity() {
                 .replace(R.id.create_challenge_fragment_container, CreateChallengeFragment.newInstance())
                 .commitNow()
         }
+
+        toolbar = findViewById(R.id.create_challenge_top_toolbar)
+        toolbar.title = "Create challenge"
+        setSupportActionBar(toolbar)
     }
 }

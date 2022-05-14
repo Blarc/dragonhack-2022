@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import si.blarc.R
-import si.blarc.UI.BaseViewModel
+import si.blarc.ui.BaseViewModel
 import si.blarc.adapters.UserAdapter
 import si.blarc.entity.User
 
@@ -51,8 +51,9 @@ class AddFriendFragment : Fragment() {
 
         usersList = view.findViewById(R.id.add_friend_users_list)
 
-        // TODO @Blarc: Pass an actual array
-        setupFriendsList(arrayListOf())
+        baseViewModel.users.observe(viewLifecycleOwner) {
+            setupFriendsList(ArrayList(it))
+        }
     }
 
     private fun setupFriendsList(users: ArrayList<User>) {
@@ -65,22 +66,6 @@ class AddFriendFragment : Fragment() {
     }
 
     private fun setupUserListAdapter(users: ArrayList<User>) {
-        adapter = UserAdapter(
-            arrayListOf(
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-                User("1", "User 1"),
-            )
-        )
+        adapter = UserAdapter(users)
     }
 }
