@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import si.blarc.R
+import si.blarc.UI.BaseViewModel
 import si.blarc.activities.CreateChallengeActivity
 
 
 class UserChallengesFragment : Fragment() {
     private lateinit var createChallengeBtn: FloatingActionButton;
 
+    private val baseViewModel: BaseViewModel by activityViewModels()
 
     companion object {
         @JvmStatic
@@ -25,6 +28,7 @@ class UserChallengesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_user_challenges, container, false)
     }
 
