@@ -1,6 +1,7 @@
 package si.blarc.entity
 
 import java.io.Serializable
+import java.time.LocalDate
 import java.util.*
 
 data class Challenge (
@@ -11,7 +12,7 @@ data class Challenge (
     val assignedFrom: String?,
     val color: String,
     val completed: Boolean?,
-    val dateToDo: Date?
+    val dateToDo: String?
 
     ) : Serializable {
     constructor() : this("", "", 0, "", "", "", false, null)

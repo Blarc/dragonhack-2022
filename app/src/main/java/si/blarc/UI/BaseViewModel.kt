@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import si.blarc.Firebase.FirebaseUtils
+import si.blarc.Firebase.FirebaseUtils.addChallenge
 import si.blarc.Firebase.FirebaseUtils.getChallengesRef
 import si.blarc.Firebase.FirebaseUtils.getFriendsRef
 import si.blarc.Firebase.FirebaseUtils.getUsersRef
@@ -27,10 +29,18 @@ class BaseViewModel : ViewModel() {
         getFriends()
     }
 
+    fun getCurrentUser() : User {
+        return User(FirebaseUtils.getIdOfCurUser(), "")
+    }
+
     private fun getCompletedChallenges() : List<Challenge> {
         return ArrayList(challenges.value).filter { challenge ->
             challenge.completed == true
         }
+    }
+
+    fun addChallenge(challenge: Challenge) {
+        FirebaseUtils.addChallenge(challenge)
     }
 
     private fun listenForChallengesOnFirebase() {

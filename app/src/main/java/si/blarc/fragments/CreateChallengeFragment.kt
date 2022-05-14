@@ -13,7 +13,11 @@ import si.blarc.LoginActivity
 import si.blarc.MainActivity
 import si.blarc.R
 import si.blarc.UI.BaseViewModel
+import si.blarc.entity.Challenge
 import si.blarc.utils.UIUtils.replaceFragment
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class CreateChallengeFragment : Fragment() {
@@ -50,6 +54,11 @@ class CreateChallengeFragment : Fragment() {
         assignChallengeToFirend = view.findViewById(R.id.create_challenge_create_friend_btn)
 
         assignChallengeToMeBtn.setOnClickListener {
+
+            var challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10, baseViewModel.getCurrentUser().id.toString(), "", "", false, LocalDate.now()!!.toString())
+
+            baseViewModel.addChallenge(challenge)
+
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
