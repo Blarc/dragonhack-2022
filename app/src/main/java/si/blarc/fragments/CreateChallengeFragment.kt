@@ -54,11 +54,12 @@ class CreateChallengeFragment : Fragment() {
 
         assignChallengeToMeBtn.setOnClickListener {
 
-            var challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10, baseViewModel.getCurrentUser().id.toString(), "", "", false, LocalDate.now()!!.toString())
+            val challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10, baseViewModel.getCurrentUser().id.toString(), "", "", false, LocalDate.now()!!.toString())
 
             baseViewModel.addChallenge(challenge)
 
             val intent = Intent(context, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
 

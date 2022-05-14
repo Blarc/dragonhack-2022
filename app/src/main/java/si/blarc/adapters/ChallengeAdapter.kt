@@ -1,11 +1,17 @@
 package si.blarc.adapters
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import si.blarc.MainActivity
 import si.blarc.R
+import si.blarc.activities.DetailsChallengeActivity
 import si.blarc.entity.Challenge
+import si.blarc.fragments.ARG_CHALLENGE_DETAILS
 import si.blarc.inflate
 
 class ChallengeAdapter(
@@ -40,6 +46,9 @@ class ChallengeAdapter(
         }
 
         override fun onClick(v: View?) {
+            val intent = Intent(v!!.context, DetailsChallengeActivity::class.java)
+            intent.putExtra(ARG_CHALLENGE_DETAILS, challenge)
+            startActivity(v.context, intent, null)
         }
 
         fun bindChallenge(challenge: Challenge) {

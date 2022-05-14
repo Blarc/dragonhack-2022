@@ -9,7 +9,7 @@ data class Challenge (
     val assignedTo: String?,
     val assignedFrom: String?,
     val color: String,
-    val completed: Boolean?,
+    var completed: Boolean?,
     val dateToDo: String?
 
     ) : Serializable {
