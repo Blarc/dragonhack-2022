@@ -2,38 +2,71 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/challenge_shape"
+        android:background="@drawable/challenge_input_field"
         android:orientation="horizontal"
         android:layout_margin="5dp">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/user_img_6">
+
+        </ImageView>
 
         <TextView
             android:id="@+id/user_item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Janez Novak"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:layout_marginStart="10dp"
             android:layout_gravity="center"
-            />
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Janez Novak"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="12"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_fire">
+
+        </ImageView>
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_marginEnd="20dp"
-            android:text="Follow"
-            android:textSize="10dp" />
+            android:src="@drawable/ic_krog">
+
+        </ImageButton>
 
 
     </LinearLayout>

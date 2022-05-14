@@ -34,6 +34,10 @@ class BaseViewModel : ViewModel() {
         FirebaseUtils.addChallenge(challenge)
     }
 
+    fun addFriend(user: User) {
+        FirebaseUtils.addFriend(user)
+    }
+
     private fun subscribeToChallengesOnFirebase() {
         getChallengesRef().addValueEventListener(object : ValueEventListener {
 

@@ -18,6 +18,7 @@ import si.blarc.ui.BaseViewModel
 import si.blarc.activities.CreateChallengeActivity
 import si.blarc.adapters.ChallengeAdapter
 import si.blarc.entity.Challenge
+import si.blarc.entity.User
 
 
 class UserChallengesFragment : Fragment() {

@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AssignChallengeFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/challenge_input_field"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,19 +27,21 @@
             android:id="@+id/assign_challenge_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/assign_challenge_users_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:overScrollMode="never"
-                tools:listitem="@layout/user_item" />
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:scrollbars="none"
+                tools:listitem="@layout/assign_challenge_item" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
