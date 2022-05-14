@@ -39,7 +39,7 @@ class CreateChallengeFragment : Fragment() {
 
         //15 dp
 
-        /*createChallengeUserBtn = view.findViewById(R.id.create_challenge_create_user_btn)
+        createChallengeUserBtn = view.findViewById(R.id.create_challenge_create_user_btn)
         createChallengeFriendBtn = view.findViewById(R.id.create_challenge_create_friend_btn)
 
         createChallengeUserBtn.setOnClickListener {
@@ -49,6 +49,6 @@ class CreateChallengeFragment : Fragment() {
 
         createChallengeFriendBtn.setOnClickListener {
             replaceFragment(requireActivity(), R.id.create_challenge_fragment_container, AssignChallengeFragment::class.java)
-        }*/
+        }
     }
 }
