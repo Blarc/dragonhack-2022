@@ -10,7 +10,6 @@ import si.blarc.entity.Challenge
 
 class BaseViewModel : ViewModel() {
 
-    //val challenges: MutableList<Challenge> = ArrayList()
     val challenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
 
     init {
