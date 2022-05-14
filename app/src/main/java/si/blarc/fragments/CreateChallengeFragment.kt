@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import si.blarc.LoginActivity
 import si.blarc.MainActivity
@@ -16,8 +17,12 @@ import si.blarc.utils.UIUtils.replaceFragment
 
 
 class CreateChallengeFragment : Fragment() {
-    private lateinit var createChallengeUserBtn: Button;
-    private lateinit var createChallengeFriendBtn: Button;
+    private lateinit var challengeTitle: EditText
+    private lateinit var challengeDescription: EditText
+    private lateinit var challengesDate: EditText
+
+    private lateinit var assignChallengeToMeBtn: Button;
+    private lateinit var assignChallengeToFirend: Button;
 
     private val baseViewModel: BaseViewModel by activityViewModels()
 
@@ -37,17 +42,19 @@ class CreateChallengeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //15 dp
+        challengeTitle = view.findViewById(R.id.challenge_title_input)
+        challengeDescription = view.findViewById(R.id.challenge_title_desc)
+        challengesDate = view.findViewById(R.id.challenge_title_date)
 
-        createChallengeUserBtn = view.findViewById(R.id.create_challenge_create_user_btn)
-        createChallengeFriendBtn = view.findViewById(R.id.create_challenge_create_friend_btn)
+        assignChallengeToMeBtn = view.findViewById(R.id.create_challenge_create_user_btn)
+        assignChallengeToFirend = view.findViewById(R.id.create_challenge_create_friend_btn)
 
-        createChallengeUserBtn.setOnClickListener {
+        assignChallengeToMeBtn.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
 
-        createChallengeFriendBtn.setOnClickListener {
+        assignChallengeToFirend.setOnClickListener {
             replaceFragment(requireActivity(), R.id.create_challenge_fragment_container, AssignChallengeFragment::class.java)
         }
     }

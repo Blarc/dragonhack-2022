@@ -47,6 +47,7 @@
             >
 
             <EditText
+                android:id="@+id/challenge_title_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -103,6 +104,7 @@
             >
 
             <EditText
+                android:id="@+id/challenge_title_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -161,6 +163,7 @@
             >
 
             <EditText
+                android:id="@+id/challenge_title_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
