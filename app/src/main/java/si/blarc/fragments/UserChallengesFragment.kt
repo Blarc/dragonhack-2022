@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -41,6 +42,8 @@ class UserChallengesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        print(baseViewModel.challenges)
+
         return inflater.inflate(R.layout.fragment_user_challenges, container, false)
     }
 
@@ -60,24 +63,26 @@ class UserChallengesFragment : Fragment() {
         }
 
         challengesList = view.findViewById(R.id.user_challenges_challenges_list)
-        setupChallengeList()
+
+        baseViewModel.challenges.observe(viewLifecycleOwner, Observer<MutableList<Challenge>> { challenges ->
+            // Update the UI
+            setupChallengeList(ArrayList(challenges))
+        })
     }
 
-    private fun setupChallengeList() {
+    private fun setupChallengeList(challenges : ArrayList<Challenge>) {
         linearLayoutManager = LinearLayoutManager(context)
 
-        setupChallengeListAdapter()
+        setupChallengeListAdapter(challenges)
 
         challengesList.layoutManager = linearLayoutManager
         challengesList.adapter = adapter
     }
 
-    private fun setupChallengeListAdapter() {
-//        TODO @martinb: Fill with data from Firebase
-//        adapter = ChallengeAdapter(
-//            challengeViewModel.getChallenges()
-//        )
-        adapter = ChallengeAdapter(
+    private fun setupChallengeListAdapter(challenges : ArrayList<Challenge>) {
+        adapter = ChallengeAdapter(challenges)
+
+        /*adapter = ChallengeAdapter(
             arrayListOf(
                 Challenge("Title 1", "Description", 1, "assignedTo", "assignedFrom", "color"),
                 Challenge("Title 2", "Description", 1, "assignedTo", "assignedFrom", "color"),
@@ -97,6 +102,6 @@ class UserChallengesFragment : Fragment() {
                 Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color"),
                 Challenge("Title 6", "Description", 1, "assignedTo", "assignedFrom", "color")
             )
-        )
+        )*/
     }
 }

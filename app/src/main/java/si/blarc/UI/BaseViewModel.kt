@@ -2,7 +2,9 @@ package si.blarc.UI
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import si.blarc.entity.Challenge
@@ -11,20 +13,28 @@ import si.blarc.Firebase.FirebaseUtils.getChallengesRef
 
 class BaseViewModel : ViewModel() {
 
-    val challenges: MutableList<Challenge?> = ArrayList()
-
+    //val challenges: MutableList<Challenge> = ArrayList()
+    val challenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
 
     init {
+        listenForChallengesOnFirebase()
+    }
+
+    private fun listenForChallengesOnFirebase() {
+        val challengesIn = this.challenges
         getChallengesRef().addValueEventListener(object : ValueEventListener {
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 //snapshot.getValue(List<Challenge::class.java>)
-                challenges.clear()
+                val challengesList = ArrayList<Challenge>()
 
                 for (postSnapshot in snapshot.children) {
                     //val curChallenge = Challenge("", "", 0, "", "", "");
                     val challenge = postSnapshot.getValue(Challenge::class.java)
-                    challenges.add(challenge)
+                    challengesList.add(challenge!!)
                 }
+
+                challengesIn.value = challengesList
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -32,5 +42,21 @@ class BaseViewModel : ViewModel() {
             }
         })
     }
+
+    /*
+    private fun getChallengesFromFirebase() {
+        getChallengesRef().get().addOnCompleteListener {
+            val challengesList = ArrayList<Challenge>()
+
+            for (postSnapshot in it.result.children) {
+                //val curChallenge = Challenge("", "", 0, "", "", "");
+                val challenge = postSnapshot.getValue(Challenge::class.java)
+                challengesList.add(challenge!!)
+            }
+
+            this.challenges.value = challengesList
+        }
+    }
+     */
 
 }
