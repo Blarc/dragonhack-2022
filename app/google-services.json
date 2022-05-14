@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1033176647600",
+    "project_id": "ananasdragonhack",
+    "storage_bucket": "ananasdragonhack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033176647600:android:a65753cfa316def6d57875",
+        "android_client_info": {
+          "package_name": "si.blarc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033176647600-90kqupc7p1nl03jv3c9drn8b1a6q1dih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLT8sL3o6FOuHiZGk_z8yQWMW9Qzb52z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033176647600-90kqupc7p1nl03jv3c9drn8b1a6q1dih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
