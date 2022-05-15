@@ -2,15 +2,14 @@ package si.blarc.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import si.blarc.MainActivity
 import si.blarc.R
-import si.blarc.activities.CreateChallengeActivity
 import si.blarc.entity.Challenge
 import si.blarc.firebase.FirebaseUtils
 
@@ -20,6 +19,8 @@ const val ARG_CHALLENGE_DETAILS = "challenge"
 class DetailsChallengeFragment : Fragment() {
     private lateinit var dueOrCompletedTextView: TextView
     private lateinit var challengeFinishButton: Button
+    private lateinit var descriptionTextView: TextView
+    private lateinit var titleTextView: TextView
 
     private var challenge: Challenge? = null
 
@@ -40,6 +41,11 @@ class DetailsChallengeFragment : Fragment() {
 
         dueOrCompletedTextView = view.findViewById(R.id.details_challenge_due_or_completed)
         challengeFinishButton = view.findViewById(R.id.details_challenge_finish_btn)
+        titleTextView = view.findViewById(R.id.challenge_title_input)
+        descriptionTextView = view.findViewById(R.id.challenge_title_desc)
+
+        titleTextView.text = challenge?.title ?: "No title."
+        descriptionTextView.text = challenge?.description ?: "No description"
 
         if (challenge!!.completed == true) {
             dueOrCompletedTextView.text = "Completed on:"
