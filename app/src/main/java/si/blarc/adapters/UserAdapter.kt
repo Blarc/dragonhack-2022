@@ -63,11 +63,16 @@ class UserAdapter(
                 val fireNumberTextView: TextView = view.findViewById(R.id.assign_item_fire_number)
                 fireNumberTextView.text = Random.nextInt(12).toString()
 
+                val friendUsernameTextView: TextView = view.findViewById(R.id.user_item_user_name)
+                friendUsernameTextView.text = user.id
+
                 assignBtn.setOnClickListener {
                     if (!btnChecked) {
                         assignBtn.setImageResource(R.drawable.ic_checked)
+                        btnChecked = true
                     } else {
                         assignBtn.setImageResource(R.drawable.ic_krog)
+                        btnChecked = false
                     }
                     (context as CreateChallengeActivity).addOrRemoveUserFromSelectedList(user)
                 }
