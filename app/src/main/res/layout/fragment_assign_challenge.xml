@@ -21,9 +21,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="26dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
-        android:layout_marginRight="26dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/challenge_input_field"
         android:orientation="horizontal">
 
@@ -39,9 +39,10 @@
 
         <EditText
             android:id="@+id/challenge_title_input"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginTop="0dp"
             android:fontFamily="@font/montserrat_semibold"
             android:hint="Search"
@@ -71,8 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:scrollbars="none"
                 tools:listitem="@layout/assign_challenge_item" />
 

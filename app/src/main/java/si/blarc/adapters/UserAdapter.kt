@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import si.blarc.R
 import si.blarc.activities.CreateChallengeActivity
 import si.blarc.entity.User
 import si.blarc.firebase.FirebaseUtils
 import si.blarc.inflate
+import kotlin.random.Random
 
 class UserAdapter(
     private var users: ArrayList<User>,
@@ -56,6 +58,9 @@ class UserAdapter(
 
             if (context is CreateChallengeActivity) {
                 val assignBtn: ImageButton = view.findViewById(R.id.assign_challenge_to_friend_btn)
+                val fireNumberTextView: TextView = view.findViewById(R.id.assign_item_fire_number)
+                fireNumberTextView.text = Random.nextInt(12).toString()
+
                 assignBtn.setOnClickListener {
                     if (!btnChecked) {
                         assignBtn.setImageResource(R.drawable.ic_checked)

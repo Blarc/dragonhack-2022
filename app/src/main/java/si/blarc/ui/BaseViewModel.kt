@@ -16,6 +16,7 @@ class BaseViewModel : ViewModel() {
 
     val challenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
     val completedChallenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
+    val uncompletedChallenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
     val users = MutableLiveData<MutableList<User>>(mutableListOf())
     val friends = MutableLiveData<MutableList<User>>(mutableListOf())
 
@@ -27,7 +28,7 @@ class BaseViewModel : ViewModel() {
     }
 
     fun getCurrentUser() : User {
-        return User(FirebaseUtils.getIdOfCurUser(), "")
+        return User(FirebaseUtils.getIdOfCurUser())
     }
 
     fun addChallenge(challenge: Challenge) {
@@ -46,6 +47,10 @@ class BaseViewModel : ViewModel() {
         FirebaseUtils.addFriend(user)
     }
 
+    fun isAlreadyFriend(user: User): Boolean {
+        return friends.value?.contains(user) ?: false
+    }
+
     private fun subscribeToChallengesOnFirebase() {
         getChallengesRef().addValueEventListener(object : ValueEventListener {
 
@@ -53,20 +58,25 @@ class BaseViewModel : ViewModel() {
                 //snapshot.getValue(List<Challenge::class.java>)
                 val challengesList = ArrayList<Challenge>()
                 val completedChallengesList = ArrayList<Challenge>()
+                val uncompletedChallengesList = ArrayList<Challenge>()
 
                 for (postSnapshot in snapshot.children) {
                     //val curChallenge = Challenge("", "", 0, "", "", "");
                     val challenge = postSnapshot.getValue(Challenge::class.java)
                     challenge!!.id = postSnapshot.key;
-                    challengesList.add(challenge!!)
+                    challengesList.add(challenge)
 
                     if (challenge.completed == true) {
                         completedChallengesList.add(challenge)
+                    }
+                    else {
+                        uncompletedChallengesList.add(challenge)
                     }
                 }
 
                 challenges.value = challengesList
                 completedChallenges.value = completedChallengesList
+                uncompletedChallenges.value = uncompletedChallengesList
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -82,8 +92,7 @@ class BaseViewModel : ViewModel() {
                 val usersList = ArrayList<User>()
 
                 for (userSnapshot in snapshot.children) {
-                    val user = userSnapshot.getValue(User::class.java)
-                    usersList.add(user!!)
+                    usersList.add(User(userSnapshot.key!!))
                 }
 
                 users.value = usersList

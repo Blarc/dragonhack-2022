@@ -26,6 +26,7 @@ class CreateChallengeActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.create_challenge_top_toolbar)
         toolbar.title = "Create challenge"
+        toolbar.setTitleTextAppearance(this, R.style.montserrat_semibold_style)
         setSupportActionBar(toolbar)
     }
 

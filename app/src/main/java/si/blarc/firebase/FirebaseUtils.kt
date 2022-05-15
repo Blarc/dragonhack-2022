@@ -1,15 +1,15 @@
 package si.blarc.firebase
 
-import com.google.firebase.database.*
-import si.blarc.MyApplication
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import si.blarc.MyApplication.Companion.curUserId
 import si.blarc.entity.Challenge
 import si.blarc.entity.User
-import si.blarc.MyApplication.Companion.curUserId
 
 
 object FirebaseUtils {
 
-    val database = FirebaseDatabase.getInstance()
+    private val database = FirebaseDatabase.getInstance()
 
     fun getIdOfCurUser() : String {
         return curUserId
@@ -23,12 +23,10 @@ object FirebaseUtils {
 
     fun addChallengeToFriend(challenge: Challenge, user: User) {
         val myRef = database.getReference(user.id).child("challenges").push()
-
         myRef.setValue(challenge);
 
-        var myChallenge = Challenge(challenge.title, challenge.description, challenge.reward, user.id, getIdOfCurUser(), challenge.color, challenge.completed, challenge.dateToDo, challenge.id)
-
-        addChallenge(myChallenge)
+//        var myChallenge = Challenge(challenge.title, challenge.description, challenge.reward, user.id, getIdOfCurUser(), challenge.color, challenge.completed, challenge.dateToDo, challenge.id)
+//        addChallenge(myChallenge)
     }
 
     fun updateChallenge(challenge: Challenge) {
@@ -37,10 +35,8 @@ object FirebaseUtils {
         myRef.setValue(challenge)
     }
 
-    fun getUsersRef() : DatabaseReference {
-        val myRef = database.reference
-
-        return myRef
+    fun getUsersRef(): DatabaseReference {
+        return database.reference
     }
 
     fun getChallengesRef() : DatabaseReference {

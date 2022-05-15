@@ -28,6 +28,7 @@ class DetailsChallengeActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.details_challenge_top_toolbar)
         toolbar.title = "Details"
+        toolbar.setTitleTextAppearance(this, R.style.montserrat_semibold_style)
         setSupportActionBar(toolbar)
     }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="montserrat_semibold_style">
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">#293742</item>
+    </style>
+
+</resources>

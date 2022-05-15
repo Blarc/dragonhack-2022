@@ -1,20 +1,21 @@
 package si.blarc.adapters
 
 import android.content.Intent
-import android.media.Image
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import si.blarc.MainActivity
 import si.blarc.R
 import si.blarc.activities.DetailsChallengeActivity
 import si.blarc.entity.Challenge
 import si.blarc.fragments.ARG_CHALLENGE_DETAILS
+import si.blarc.fragments.avatarsList
 import si.blarc.inflate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChallengeAdapter(
     private var challenges: ArrayList<Challenge>
@@ -54,21 +55,34 @@ class ChallengeAdapter(
         }
 
         fun bindChallenge(challenge: Challenge) {
-            this.challenge = challenge;
+            this.challenge = challenge
+
+            val creatorName: TextView = view.findViewById(R.id.challenge_item_creator_name)
+            creatorName.text = challenge.assignedFrom?.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
 
             val titleTextView: TextView = view.findViewById(R.id.challenge_item_challenge_title)
-            val avatarImageView: ImageView = view.findViewById(R.id.challenge_item_avatar)
+            titleTextView.text = challenge.title.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
 
-            val avatarsList = arrayListOf(
-                R.drawable.ic_avatar_1,
-                R.drawable.ic_avatar_2,
-                R.drawable.ic_avatar_3,
-                R.drawable.ic_avatar_4,
-                R.drawable.ic_avatar_5,
-                R.drawable.ic_avatar_6
+            val backgroundShapes = arrayListOf(
+                R.drawable.challenge_shape_green,
+                R.drawable.challenge_shape_red,
+                R.drawable.challenge_shape_orange,
+                R.drawable.challenge_shape_purple,
             )
 
-            avatarImageView.setImageResource(avatarsList.random())
+            val linearLayout: LinearLayout = view.findViewById(R.id.challenge_item_layout)
+            linearLayout.setBackgroundResource(backgroundShapes[challenge.colorId?: 0])
+
+            val avatarImageView: ImageView = view.findViewById(R.id.challenge_item_avatar)
+            avatarImageView.setImageResource(avatarsList[challenge.avatarId?: 0])
 
             val dueTextView: TextView = view.findViewById(R.id.challenge_item_due)
             if (challenge.completed == true) {

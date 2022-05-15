@@ -17,7 +17,24 @@ import si.blarc.entity.Challenge
 import si.blarc.ui.BaseViewModel
 import si.blarc.utils.UIUtils.replaceFragment
 import java.time.LocalDate
+import kotlin.random.Random
 
+
+val backgroundShapes = arrayListOf(
+    R.drawable.challenge_shape_green,
+    R.drawable.challenge_shape_red,
+    R.drawable.challenge_shape_orange,
+    R.drawable.challenge_shape_purple,
+)
+
+val avatarsList = arrayListOf(
+    R.drawable.ic_avatar_1,
+    R.drawable.ic_avatar_2,
+    R.drawable.ic_avatar_3,
+    R.drawable.ic_avatar_4,
+    R.drawable.ic_avatar_5,
+    R.drawable.ic_avatar_6
+)
 
 class CreateChallengeFragment : Fragment() {
     private lateinit var challengeTitle: EditText
@@ -25,7 +42,7 @@ class CreateChallengeFragment : Fragment() {
     private lateinit var challengesDate: EditText
 
     private lateinit var assignChallengeToMeBtn: Button;
-    private lateinit var assignChallengeToFirend: Button;
+    private lateinit var assignChallengeToFriend: Button;
 
     private val baseViewModel: BaseViewModel by activityViewModels()
 
@@ -51,12 +68,22 @@ class CreateChallengeFragment : Fragment() {
         challengesDate = view.findViewById(R.id.challenge_title_date)
 
         assignChallengeToMeBtn = view.findViewById(R.id.create_challenge_create_user_btn)
-        assignChallengeToFirend = view.findViewById(R.id.create_challenge_create_friend_btn)
+        assignChallengeToFriend = view.findViewById(R.id.create_challenge_create_friend_btn)
 
         assignChallengeToMeBtn.setOnClickListener {
 
-            val challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10,
-                baseViewModel.getCurrentUser().id, "", "", false, LocalDate.now()!!.toString(), "")
+            val challenge = Challenge(
+                challengeTitle.text.toString().lowercase(),
+                challengeDescription.text.toString(),
+                10,
+                baseViewModel.getCurrentUser().id,
+                "You",
+                Random.nextInt(backgroundShapes.size),
+                0,
+                false,
+                LocalDate.now()!!.toString(),
+                ""
+            )
 
             baseViewModel.addChallenge(challenge)
 
@@ -65,8 +92,19 @@ class CreateChallengeFragment : Fragment() {
             startActivity(intent)
         }
 
-        assignChallengeToFirend.setOnClickListener {
-            (activity as CreateChallengeActivity).challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10, "", baseViewModel.getCurrentUser().id.toString(), "", false, LocalDate.now()!!.toString(), "")
+        assignChallengeToFriend.setOnClickListener {
+            (activity as CreateChallengeActivity).challenge = Challenge(
+                challengeTitle.text.toString().lowercase(),
+                challengeDescription.text.toString(),
+                10,
+                "",
+                baseViewModel.getCurrentUser().id,
+                Random.nextInt(backgroundShapes.size),
+                Random.nextInt(avatarsList.size),
+                false,
+                LocalDate.now()!!.toString(),
+                ""
+            )
 
             replaceFragment(requireActivity(), R.id.create_challenge_fragment_container, AssignChallengeFragment::class.java)
         }
