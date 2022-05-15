@@ -61,10 +61,10 @@ object FirebaseUtils {
         myRef.setValue(user);
     }
 
-    fun addUser(userId: String) {
-        val myRef = database.getReference(userId)
+    fun addUser(user: User) {
+        val myRef = database.getReference(user.id)
 
-        myRef.setValue("challenges")
+        myRef.setValue(user)
     }
 
 
