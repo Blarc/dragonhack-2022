@@ -38,6 +38,9 @@ class BaseViewModel : ViewModel() {
         FirebaseUtils.addChallengeToFriend(challenge, user)
     }
 
+    fun updateChallenge(challenge: Challenge) {
+        FirebaseUtils.updateChallenge(challenge)
+    }
 
     fun addFriend(user: User) {
         FirebaseUtils.addFriend(user)
@@ -54,6 +57,7 @@ class BaseViewModel : ViewModel() {
                 for (postSnapshot in snapshot.children) {
                     //val curChallenge = Challenge("", "", 0, "", "", "");
                     val challenge = postSnapshot.getValue(Challenge::class.java)
+                    challenge!!.id = postSnapshot.key;
                     challengesList.add(challenge!!)
 
                     if (challenge.completed == true) {

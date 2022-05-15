@@ -31,10 +31,9 @@ object FirebaseUtils {
     }
 
     fun updateChallenge(challenge: Challenge) {
-        val myRef = database.getReference(getIdOfCurUser())
-            .child("challenges")
+        val myRef = database.getReference(getIdOfCurUser()).child("challenges").child(challenge.id!!)
 
-        // TODO @martinb: Implement this method
+        myRef.setValue(challenge)
     }
 
     fun getUsersRef() : DatabaseReference {
