@@ -1,9 +1,11 @@
 package si.blarc.adapters
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -55,7 +57,18 @@ class ChallengeAdapter(
             this.challenge = challenge;
 
             val textView: TextView = view.findViewById(R.id.challenge_item_challenge_title)
-//            textView.text = challenge.description
+            val avatarImageView: ImageView = view.findViewById(R.id.challenge_item_avatar)
+
+            val avatarsList = arrayListOf(
+                R.drawable.ic_avatar_1,
+                R.drawable.ic_avatar_2,
+                R.drawable.ic_avatar_3,
+                R.drawable.ic_avatar_4,
+                R.drawable.ic_avatar_5,
+                R.drawable.ic_avatar_6
+            )
+
+            avatarImageView.setImageResource(avatarsList.random())
         }
 
     }

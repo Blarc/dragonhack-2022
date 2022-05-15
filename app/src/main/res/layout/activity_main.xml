@@ -4,20 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:background="@drawable/background_orange">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_top_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="100dp"
+        android:background="#a6d5fa"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_avatar_1" />
+
+            <TextView
+                android:id="@+id/main_fragment_toolbar_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Janez Novak"
+                android:textSize="20dp"
+                android:paddingStart="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/main_fragment_container"
@@ -32,9 +58,12 @@
         android:id="@+id/main_bottom_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="75dp"
+        android:background="#a6d5fa"
+        app:itemIconSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

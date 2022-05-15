@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DetailsChallengeActivity" >
+    tools:context=".activities.DetailsChallengeActivity"
+    android:background="@drawable/background_orange"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/details_challenge_top_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="100dp"
+        android:background="#a6d5fa"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"

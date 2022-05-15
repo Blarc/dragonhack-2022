@@ -23,7 +23,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="25dp"
-            android:alpha="0.6"
+            android:alpha="0.9"
             >
 
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_alternates_medium"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Title :"
                 android:textColor="#6691b4"
                 android:textSize="20dp">
@@ -82,7 +82,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="25dp"
-            android:alpha="0.6"
+            android:alpha="0.9"
             >
 
             <TextView
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_alternates_medium"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Description :"
                 android:textColor="#6691b4"
                 android:textSize="20dp">
@@ -118,7 +118,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="0dp"
-                    android:fontFamily="@font/montserrat_alternates_medium"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Description"
                     android:textSize="20dp"
                     android:inputType="textMultiLine">
@@ -140,7 +140,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="25dp"
-            android:alpha="0.6"
+            android:alpha="0.9"
             >
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_alternates_medium"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Completed on :"
                 android:textColor="#6691b4"
                 android:textSize="20dp">
@@ -177,7 +177,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="0dp"
-                    android:fontFamily="@font/montserrat_alternates_medium"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Today"
                     android:textSize="20dp"
                     android:inputType="date">
