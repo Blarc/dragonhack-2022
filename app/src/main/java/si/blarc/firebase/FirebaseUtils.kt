@@ -1,14 +1,15 @@
 package si.blarc.firebase
 
 import com.google.firebase.database.*
+import si.blarc.MyApplication
 import si.blarc.entity.Challenge
 import si.blarc.entity.User
+import si.blarc.MyApplication.Companion.curUserId
 
 
 object FirebaseUtils {
 
     val database = FirebaseDatabase.getInstance()
-    var curUserId : String = "YEVKpig4RVerMg3763lSdiKrzBs1";
 
     fun getIdOfCurUser() : String {
         return curUserId
@@ -58,6 +59,12 @@ object FirebaseUtils {
         val myRef = database.getReference(getIdOfCurUser()).child("friends").push()
 
         myRef.setValue(user);
+    }
+
+    fun addUser(userId: String) {
+        val myRef = database.getReference(userId)
+
+        myRef.setValue("challenges")
     }
 
 
