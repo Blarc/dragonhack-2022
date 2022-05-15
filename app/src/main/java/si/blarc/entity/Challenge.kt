@@ -10,8 +10,9 @@ data class Challenge (
     val assignedFrom: String?,
     val color: String,
     var completed: Boolean?,
-    val dateToDo: String?
+    val dateToDo: String?,
+    val id: String
 
     ) : Serializable {
-    constructor() : this("", "", 0, "", "", "", false, null)
+    constructor() : this("", "", 0, "", "", "", false, "", "")
 }

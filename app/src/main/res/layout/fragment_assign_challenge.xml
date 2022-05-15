@@ -27,12 +27,37 @@
         android:background="@drawable/challenge_input_field"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_search"
+            android:layout_marginLeft="20dp"
+            >
+
+        </ImageView>
+
+        <EditText
+            android:id="@+id/challenge_title_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:hint="Search"
+            android:text=""
+            android:textSize="20dp">
+
+        </EditText>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -55,4 +80,20 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="Done">
+
+        </Button>
+
+    </LinearLayout>
 </FrameLayout>
