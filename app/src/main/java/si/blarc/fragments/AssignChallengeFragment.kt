@@ -68,6 +68,6 @@ class AssignChallengeFragment : Fragment() {
     }
 
     private fun setupFriendsListAdapter(users: ArrayList<User>) {
-        adapter = UserAdapter(users)
+        adapter = UserAdapter(users, R.layout.assign_challenge_item)
     }
 }

@@ -8,11 +8,12 @@ import si.blarc.entity.User
 import si.blarc.inflate
 
 class UserAdapter(
-    private var users: ArrayList<User>
+    private var users: ArrayList<User>,
+    private var layoutId: Int
 ): RecyclerView.Adapter<UserAdapter.UserHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
-        return UserHolder(parent.inflate(R.layout.user_item, false))
+        return UserHolder(parent.inflate(layoutId, false))
     }
 
     override fun getItemCount() = users.size
