@@ -42,7 +42,7 @@ class HistoryChallengesFragment : Fragment() {
 
         swipeRefreshLayout = view.findViewById(R.id.history_challenges_swipe_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
             // TODO @Blarc: Refresh challenges array
             swipeRefreshLayout.isRefreshing = false
         }

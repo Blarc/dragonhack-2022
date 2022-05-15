@@ -55,7 +55,8 @@ class CreateChallengeFragment : Fragment() {
 
         assignChallengeToMeBtn.setOnClickListener {
 
-            val challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10, baseViewModel.getCurrentUser().id.toString(), "", "", false, LocalDate.now()!!.toString(), "")
+            val challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10,
+                baseViewModel.getCurrentUser().id, "", "", false, LocalDate.now()!!.toString(), "")
 
             baseViewModel.addChallenge(challenge)
 

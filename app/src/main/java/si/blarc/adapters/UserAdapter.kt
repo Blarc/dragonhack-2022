@@ -3,18 +3,19 @@ package si.blarc.adapters
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import si.blarc.R
 import si.blarc.activities.CreateChallengeActivity
 import si.blarc.entity.User
-import si.blarc.fragments.AssignChallengeFragment
+import si.blarc.firebase.FirebaseUtils
 import si.blarc.inflate
 
 class UserAdapter(
     private var users: ArrayList<User>,
     private var layoutId: Int,
-    private var context2: Context?
+    private var context: Context?
 ): RecyclerView.Adapter<UserAdapter.UserHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
@@ -40,28 +41,9 @@ class UserAdapter(
     inner class UserHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
         private var user: User? = null
-        private var assignChallengeToFriendBtn: ImageButton?
         private var btnChecked: Boolean = false
 
         init {
-            assignChallengeToFriendBtn = view.findViewById(R.id.assign_challenge_to_friend_btn)
-
-            if (assignChallengeToFriendBtn != null) {
-                assignChallengeToFriendBtn!!.setOnClickListener() {
-                    if (!btnChecked) {
-                        assignChallengeToFriendBtn!!.setImageResource(R.drawable.ic_checked)
-                    } else {
-                        assignChallengeToFriendBtn!!.setImageResource(R.drawable.ic_krog)
-                    }
-
-                    if (context2 != null) {
-                        (context2 as CreateChallengeActivity).onBtnSelected(user!!);
-                    }
-
-                    btnChecked = !btnChecked;
-                }
-            }
-
             v.setOnClickListener(this)
         }
 
@@ -71,6 +53,27 @@ class UserAdapter(
 
         fun bindUser(user: User) {
             this.user = user
+
+            if (context is CreateChallengeActivity) {
+                val assignBtn: ImageButton = view.findViewById(R.id.assign_challenge_to_friend_btn)
+                assignBtn.setOnClickListener {
+                    if (!btnChecked) {
+                        assignBtn.setImageResource(R.drawable.ic_checked)
+                    } else {
+                        assignBtn.setImageResource(R.drawable.ic_krog)
+                    }
+                    (context as CreateChallengeActivity).addOrRemoveUserFromSelectedList(user)
+                }
+
+            }
+            // Context is MainActivity
+            else {
+                val addFriendBtn: Button = view.findViewById(R.id.user_item_follow_btn)
+                addFriendBtn.setOnClickListener {
+                    FirebaseUtils.addFriend(user)
+                    addFriendBtn.isEnabled = false
+                }
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ import si.blarc.R
 import si.blarc.ui.BaseViewModel
 import si.blarc.adapters.UserAdapter
 import si.blarc.entity.User
+import si.blarc.firebase.FirebaseUtils.getIdOfCurUser
 
 
 class AddFriendFragment : Fragment() {
@@ -44,7 +45,7 @@ class AddFriendFragment : Fragment() {
 
         swipeRefreshLayout = view.findViewById(R.id.add_friend_swipe_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
             // TODO @Blarc: Refresh user array
             swipeRefreshLayout.isRefreshing = false
         }
@@ -52,7 +53,10 @@ class AddFriendFragment : Fragment() {
         usersList = view.findViewById(R.id.add_friend_users_list)
 
         baseViewModel.users.observe(viewLifecycleOwner) {
-            setupFriendsList(ArrayList(it))
+            val filtered = it.filter { user ->
+                user.id != getIdOfCurUser() && !baseViewModel.isAlreadyFriend(user)
+            }
+            setupFriendsList(ArrayList(filtered))
         }
     }
 

@@ -50,7 +50,7 @@ class UserChallengesFragment : Fragment() {
 
         swipeRefreshLayout = view.findViewById(R.id.user_challenges_swipe_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
             // TODO @Blarc: Refresh challenges array
             swipeRefreshLayout.isRefreshing = false
         }
@@ -63,16 +63,10 @@ class UserChallengesFragment : Fragment() {
 
         challengesList = view.findViewById(R.id.user_challenges_challenges_list)
 
-        baseViewModel.challenges.observe(viewLifecycleOwner) { challenges ->
+        baseViewModel.uncompletedChallenges.observe(viewLifecycleOwner) { challenges ->
             // Update the UI
             setupChallengeList(ArrayList(challenges))
         }
-
-        /*Method to get users
-        baseViewModel.users.observe(viewLifecycleOwner) { users ->
-            print(users)
-        }
-        */
     }
 
     private fun setupChallengeList(challenges : ArrayList<Challenge>) {

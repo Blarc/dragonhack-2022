@@ -54,7 +54,7 @@ class AssignChallengeFragment : Fragment() {
 
         swipeRefreshLayout = view.findViewById(R.id.assign_challenge_swipe_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
             // TODO @Blarc: Refresh user array
             swipeRefreshLayout.isRefreshing = false
         }
@@ -68,13 +68,14 @@ class AssignChallengeFragment : Fragment() {
         doneAssigningBtn = view.findViewById(R.id.assign_challenge_done_btn)
 
         doneAssigningBtn.setOnClickListener() {
-            var selectedFriend = (activity as CreateChallengeActivity).selectedFriend
+            val selectedFriends = (activity as CreateChallengeActivity).selectedFriends
+            val challenge = (activity as CreateChallengeActivity).challenge
 
-            if (selectedFriend != null) {
-                val challenge = (activity as CreateChallengeActivity).challenge
+            selectedFriends.forEach {
+                baseViewModel.addChallengeToFriend(challenge!!, it)
+            }
 
-                baseViewModel.addChallengeToFriend(challenge!!, selectedFriend!!)
-
+            if (selectedFriends.isNotEmpty()) {
                 val intent = Intent(context, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)

@@ -11,7 +11,7 @@ import si.blarc.fragments.CreateChallengeFragment
 class CreateChallengeActivity : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
-    var selectedFriend: User? = null
+    var selectedFriends: MutableList<User> = mutableListOf()
     var challenge: Challenge? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,12 @@ class CreateChallengeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
-    fun onBtnSelected(friend: User) {
-        selectedFriend = friend
+    fun addOrRemoveUserFromSelectedList(user: User)  {
+        if (selectedFriends.contains(user)) {
+            selectedFriends.remove(user)
+        }
+        else {
+            selectedFriends.add(user)
+        }
     }
 }

@@ -56,7 +56,7 @@ class ChallengeAdapter(
         fun bindChallenge(challenge: Challenge) {
             this.challenge = challenge;
 
-            val textView: TextView = view.findViewById(R.id.challenge_item_challenge_title)
+            val titleTextView: TextView = view.findViewById(R.id.challenge_item_challenge_title)
             val avatarImageView: ImageView = view.findViewById(R.id.challenge_item_avatar)
 
             val avatarsList = arrayListOf(
@@ -69,6 +69,14 @@ class ChallengeAdapter(
             )
 
             avatarImageView.setImageResource(avatarsList.random())
+
+            val dueTextView: TextView = view.findViewById(R.id.challenge_item_due)
+            if (challenge.completed == true) {
+                dueTextView.text = "Completed on: today"
+            }
+            else {
+                dueTextView.text = "Due to: today"
+            }
         }
 
     }
