@@ -1,9 +1,11 @@
 package si.blarc
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import si.blarc.firebase.FirebaseUtils.getIdOfCurUser
 import si.blarc.fragments.AddFriendFragment
 import si.blarc.fragments.HistoryChallengesFragment
 import si.blarc.fragments.UserChallengesFragment
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavBar: BottomNavigationView
     private lateinit var toolbar: Toolbar
+    private lateinit var usernameTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,9 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.main_fragment_container, UserChallengesFragment.newInstance())
                 .commitNow()
         }
+
+        usernameTextView = findViewById(R.id.main_fragment_toolbar_username)
+        usernameTextView.text = getIdOfCurUser()
 
         toolbar = findViewById(R.id.main_top_toolbar)
         toolbar.title = "Home"

@@ -1,5 +1,6 @@
 package si.blarc.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import si.blarc.MainActivity
 import si.blarc.R
+import si.blarc.activities.CreateChallengeActivity
 import si.blarc.entity.Challenge
 import si.blarc.firebase.FirebaseUtils
 
@@ -51,6 +54,10 @@ class DetailsChallengeFragment : Fragment() {
                 FirebaseUtils.updateChallenge(challenge!!)
                 challengeFinishButton.text = "Finished"
                 challengeFinishButton.isEnabled = false
+
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
         }
     }

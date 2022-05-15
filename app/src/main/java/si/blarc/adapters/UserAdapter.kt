@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import si.blarc.R
 import si.blarc.activities.CreateChallengeActivity
 import si.blarc.entity.User
 import si.blarc.firebase.FirebaseUtils
+import si.blarc.fragments.avatarsList
 import si.blarc.inflate
 import kotlin.random.Random
 
@@ -74,6 +76,12 @@ class UserAdapter(
             // Context is MainActivity
             else {
                 val addFriendBtn: Button = view.findViewById(R.id.user_item_follow_btn)
+                val friendUsernameTextView: TextView = view.findViewById(R.id.user_item_user_name)
+                friendUsernameTextView.text = user.id
+
+                val addFriendAvatar: ImageView = view.findViewById(R.id.user_item_avatar)
+                addFriendAvatar.setImageResource(avatarsList.random())
+
                 addFriendBtn.setOnClickListener {
                     FirebaseUtils.addFriend(user)
                     addFriendBtn.isEnabled = false
