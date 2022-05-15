@@ -34,6 +34,11 @@ class BaseViewModel : ViewModel() {
         FirebaseUtils.addChallenge(challenge)
     }
 
+    fun addChallengeToFriend(challenge: Challenge, user: User) {
+        FirebaseUtils.addChallengeToFriend(challenge, user)
+    }
+
+
     fun addFriend(user: User) {
         FirebaseUtils.addFriend(user)
     }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import si.blarc.MainActivity
 import si.blarc.R
+import si.blarc.activities.CreateChallengeActivity
 import si.blarc.entity.Challenge
 import si.blarc.ui.BaseViewModel
 import si.blarc.utils.UIUtils.replaceFragment
@@ -64,6 +65,8 @@ class CreateChallengeFragment : Fragment() {
         }
 
         assignChallengeToFirend.setOnClickListener {
+            (activity as CreateChallengeActivity).challenge = Challenge(challengeTitle.text.toString(), challengeDescription.text.toString(), 10, "", baseViewModel.getCurrentUser().id.toString(), "", false, LocalDate.now()!!.toString(), "")
+
             replaceFragment(requireActivity(), R.id.create_challenge_fragment_container, AssignChallengeFragment::class.java)
         }
     }

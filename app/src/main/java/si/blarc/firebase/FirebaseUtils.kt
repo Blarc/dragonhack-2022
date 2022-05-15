@@ -20,6 +20,16 @@ object FirebaseUtils {
         myRef.setValue(challenge);
     }
 
+    fun addChallengeToFriend(challenge: Challenge, user: User) {
+        val myRef = database.getReference(user.id).child("challenges").push()
+
+        myRef.setValue(challenge);
+
+        var myChallenge = Challenge(challenge.title, challenge.description, challenge.reward, user.id, getIdOfCurUser(), challenge.color, challenge.completed, challenge.dateToDo, challenge.id)
+
+        addChallenge(myChallenge)
+    }
+
     fun updateChallenge(challenge: Challenge) {
         val myRef = database.getReference(getIdOfCurUser())
             .child("challenges")

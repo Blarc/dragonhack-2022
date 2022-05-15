@@ -1,21 +1,27 @@
 
 package si.blarc.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import si.blarc.MainActivity
 import si.blarc.R
+import si.blarc.activities.CreateChallengeActivity
 import si.blarc.adapters.UserAdapter
+import si.blarc.entity.Challenge
 import si.blarc.entity.User
 import si.blarc.ui.BaseViewModel
+import java.time.LocalDate
 
 
 class AssignChallengeFragment : Fragment() {
@@ -23,6 +29,8 @@ class AssignChallengeFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var adapter: UserAdapter
+
+    private lateinit var doneAssigningBtn: Button;
 
     private val baseViewModel: BaseViewModel by activityViewModels()
 
@@ -56,6 +64,22 @@ class AssignChallengeFragment : Fragment() {
         baseViewModel.friends.observe(viewLifecycleOwner) {
             setupFriendsList(ArrayList(it))
         }
+
+        doneAssigningBtn = view.findViewById(R.id.assign_challenge_done_btn)
+
+        doneAssigningBtn.setOnClickListener() {
+            var selectedFriend = (activity as CreateChallengeActivity).selectedFriend
+
+            if (selectedFriend != null) {
+                val challenge = (activity as CreateChallengeActivity).challenge
+
+                baseViewModel.addChallengeToFriend(challenge!!, selectedFriend!!)
+
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun setupFriendsList(users: ArrayList<User>) {
@@ -68,6 +92,6 @@ class AssignChallengeFragment : Fragment() {
     }
 
     private fun setupFriendsListAdapter(users: ArrayList<User>) {
-        adapter = UserAdapter(users, R.layout.assign_challenge_item)
+        adapter = UserAdapter(users, R.layout.assign_challenge_item, this.requireContext())
     }
 }

@@ -66,6 +66,6 @@ class AddFriendFragment : Fragment() {
     }
 
     private fun setupUserListAdapter(users: ArrayList<User>) {
-        adapter = UserAdapter(users, R.layout.user_item)
+        adapter = UserAdapter(users, R.layout.user_item, null)
     }
 }

@@ -86,6 +86,7 @@
         android:gravity="right">
 
         <Button
+            android:id="@+id/assign_challenge_done_btn"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
